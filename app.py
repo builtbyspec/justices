@@ -6,13 +6,14 @@ import plotly.graph_objs as go
 import pandas as pd
 import datetime
 from plotly import tools
+from nltk import word_tokenize, pos_tag
 
 
 
 # LOAD DATA
 # ==========
 prose_df = prose_df = pd.read_json("data/prose.json").T
-justices = pd.read_csv("data/justices-dialogue.csv")
+# justices = pd.read_csv("data/justices-dialogue.csv")
 # DATA INTERACTION
 # ==========
 '''
@@ -21,6 +22,17 @@ Steps for data interaction:
     2. Input x data, and y data and store into variable
     3. Group plots into an arrays for easy access
 '''
+
+# def count_modal(tagged):
+#     return len([word for word in tagged if word[1] == "MD"])
+# justices["tokenized"] = justices["text_blocks"].apply(word_tokenize)
+# justices["tagged"] = justices["tokenized"].apply(pos_tag)
+# justices["modal"] = justices["tagged"].apply(count_modal)
+
+# justices["count"] = justices["tokenized"].apply(len)
+# justices["modal_prop"] = justices["modal"] / justices["count"]
+# justices.groupby("gender").modal_prop.mean()
+
 # example_scatter1 = go.Scatter(x=random_x, y=random_y0,
 #                     mode='lines',
 #                     name='lines',
@@ -65,7 +77,11 @@ header = dbc.Jumbotron(
     className = 'my-div text-center',
 )
 tab1_content = (
-    html.H2("tab1stuff")
+    [
+        html.H2(prose_df.loc["modal_use", "title"]),
+        html.P(prose_df.loc["modal_use", "prose_1"]),
+        html.H2(prose_df.loc["intro", "title"]),
+    ]
 )
 tab2_content = (
     html.H2("tab2stuff")
@@ -120,9 +136,9 @@ app.layout = html.Div(children=[
         # dcc.Graph(
         #     figure = examplefig
         # ),
-        html.P(prose_df.loc["data explanation", "prose_1"]),
-        html.P(prose_df.loc["data explanation", "prose_2"]),
-        html.P(prose_df.loc["data explanation", "prose_3"]),
+        # html.P(prose_df.loc["data explanation", "prose_1"]),
+        # html.P(prose_df.loc["data explanation", "prose_2"]),
+        # html.P(prose_df.loc["data explanation", "prose_3"]),
 
 ])
 

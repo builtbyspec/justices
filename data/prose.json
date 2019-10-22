@@ -5,9 +5,9 @@
     "prose_2": "Our initial hypothesis was that female justices tend to soften or reduce the impact of their words by using phrases like \"Would you like to consider the posibility...\" or \"I would have thought perhaps...\" also known as hedging. We were also interested in how the sentiment of dialogue changed over time, as well as over the course of a justice's lifetime. Our investigation led us through the following questions:",
     "closing_prose":"Please enjoy our journey navigating through a 100,000 row data frame of Supreme Court Case Dialogue."
   }, 
-  "data explanation":{
-    "title": "hello",
-    "prose_1": "This prose should explain the graph.",
+  "modal_use":{
+    "title": "Analyzing the Use of Modals",
+    "prose_1": "A common part of speech used in hedging is a modal, which is a type of auxiliary verb that expresses possibility. Some examples of modals include the words \"would\", \"should\", \"may\", and \"might\". To explore whether or not female or male justices hedge more, we used the NLTK library to count up the number of modals in each line of dialogue, and comparing them between genders.",
     "prose_2": "Make a prose for each section. ",
     "prose_3":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
   }
