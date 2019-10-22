@@ -6,7 +6,6 @@ import plotly.graph_objs as go
 import pandas as pd
 import datetime
 from plotly import tools
-from nltk import word_tokenize, pos_tag
 
 
 
