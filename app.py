@@ -22,21 +22,23 @@ Steps for data interaction:
     3. Group plots into an arrays for easy access
 '''
 
-# def count_modal(tagged):
-#     return len([word for word in tagged if word[1] == "MD"])
-# justices["tokenized"] = justices["text_blocks"].apply(word_tokenize)
-# justices["tagged"] = justices["tokenized"].apply(pos_tag)
-# justices["modal"] = justices["tagged"].apply(count_modal)
+modal_table= go.Figure(
+    data=[
+        go.Table(header=dict(values=['Gender', 'Proportion of Modals Per Line']),
+                 cells=dict(values=[[100, 90, 80, 90], [95, 85, 75, 95]])
+                 )
+    ]
+)
 
-# justices["count"] = justices["tokenized"].apply(len)
-# justices["modal_prop"] = justices["modal"] / justices["count"]
-# justices.groupby("gender").modal_prop.mean()
+modal_bar =  go.Figure(
+    data=[
+        go.Bar(name='Sentences starting With Modal', x=["Female","Male"], y=[0.021971, 0.015526]),
+        go.Bar(name='Sentences starting Without Modal', x=["Female","Male"], y=[0.978029, 0.984474]),
+    ]
+)
+# Change the bar mode
+modal_bar.update_layout(barmode='stack')
 
-# example_scatter1 = go.Scatter(x=random_x, y=random_y0,
-#                     mode='lines',
-#                     name='lines',
-#                     line = dict(color = '#90DAB5'),
-#                     opacity = 0.8)
 
 # example_scatter2 = go.Scatter(x=random_x, y=random_y1,
 #                     mode='lines+markers',
@@ -79,7 +81,26 @@ tab1_content = (
     [
         html.H2(prose_df.loc["modal_use", "title"]),
         html.P(prose_df.loc["modal_use", "prose_1"]),
-        html.H2(prose_df.loc["intro", "title"]),
+        dcc.Graph(figure=modal_table),
+        html.P([
+            prose_df.loc["modal_use", "prose_2a"],
+            html.Em(prose_df.loc["modal_use", "prose_2_em"]), 
+            prose_df.loc["modal_use", "prose_2_b"]
+            ]
+        ),
+        html.P([
+            "\"",
+            html.Strong(prose_df.loc["modal_use", "example_1_strong"]),
+            prose_df.loc["modal_use", "example_1_b"],
+            html.P(prose_df.loc["modal_use", "example_1_c"]),
+            prose_df.loc["modal_use", "example_2_a"],
+            html.Strong(prose_df.loc["modal_use", "example_2_strong"]),
+            prose_df.loc["modal_use", "example_2_b"],
+        ]),
+        html.P(prose_df.loc["modal_use", "prose_3"]),
+        dcc.Graph(figure=modal_bar),
+        html.P(prose_df.loc["modal_use", "prose_4"]),
+
     ]
 )
 tab2_content = (

@@ -8,7 +8,16 @@
   "modal_use":{
     "title": "Analyzing the Use of Modals",
     "prose_1": "A common part of speech used in hedging is a modal, which is a type of auxiliary verb that expresses possibility. Some examples of modals include the words \"would\", \"should\", \"may\", and \"might\". To explore whether or not female or male justices hedge more, we used the NLTK library to count up the number of modals in each line of dialogue, and comparing them between genders.",
-    "prose_2": "Make a prose for each section. ",
-    "prose_3":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+    "prose_2a": "The proportions weren't quite what we expected. This made us realize an issue with using modal proportions as a measure of hedging: the meaning of the sentence varies drastically depending on the ",
+    "prose_2_em":"location",
+    "prose_2_b":" of the modal in the sentence. For example:",
+    "example_1_strong":"Would ",
+    "example_1_b":" it be possible for you to elaborate?\"",
+    "example_1_c":"vs.",
+    "example_2_a":"\"You ",
+    "example_2_strong":"would",
+    "example_2_b":" not believe what I saw today! \"",
+    "prose_3":"The first example would be classified as hedging whereas the second would not, yet they both have the same modal proportion. It appears that sentences that start with a modal may be a better measure of hedging. We investigated the proportion of lines starting with a modal between each gender next. ",
+    "prose_4":"It appears that female justices tend to start more lines with a modal than men do. This could be evidence that women hedge more often than men. "
   }
 }
