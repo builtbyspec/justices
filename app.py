@@ -24,19 +24,24 @@ Steps for data interaction:
 modal_table= go.Figure(
     data=[
         go.Table(header=dict(values=['Gender', 'Proportion of Modals Per Line']),
-                 cells=dict(values=[[100, 90, 80, 90], [95, 85, 75, 95]])
+                 cells=dict(values=[['Male', 'Female'], [95, 85, 75, 95]])
                  )
     ]
 )
 
 modal_bar =  go.Figure(
     data=[
-        go.Bar(name='Sentences starting With Modal', x=["Female","Male"], y=[0.021971, 0.015526]),
-        go.Bar(name='Sentences starting Without Modal', x=["Female","Male"], y=[0.978029, 0.984474]),
+        go.Bar(name='Sentences starting With Modal', x=["Female","Male"], y=[0.021971, 0.015526],)
+    ]
+)
+interruption_bar =  go.Figure(
+    data=[
+        go.Bar(name='Sentences starting With Modal', x=["Female","Male"], y=[1789/26931, 1826/71857],)
     ]
 )
 # Change the bar mode
-modal_bar.update_layout(barmode='stack')
+modal_bar.update_layout(barmode='stack', title=go.layout.Title(text='Sentences starting with a Modal'))
+interruption_bar.update_layout(barmode='stack', title=go.layout.Title(text='Proportion of sentences that were interrupted'))
 
 
 # example_scatter2 = go.Scatter(x=random_x, y=random_y1,
@@ -103,7 +108,11 @@ tab1_content = (
     ]
 )
 tab2_content = (
-    html.H2("tab2stuff")
+    html.H2(prose_df.loc["interruption", "title"]),
+    html.P(prose_df.loc["interruption", "prose_1"]),
+    html.P(prose_df.loc["interruption", "prose_2"]),
+    dcc.Graph(figure=interruption_bar),
+    html.P(prose_df.loc["interruption","prose_3"])
 )
 tab3_content = (
     html.H2("tab3stuff")

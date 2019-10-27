@@ -19,5 +19,11 @@
     "example_2_b":" not believe what I saw today! \"",
     "prose_3":"The first example would be classified as hedging whereas the second would not, yet they both have the same modal proportion. It appears that sentences that start with a modal may be a better measure of hedging. We investigated the proportion of lines starting with a modal between each gender next. ",
     "prose_4":"It appears that female justices tend to start more lines with a modal than men do. This could be evidence that women hedge more often than men. "
+  },
+  "interruption":{
+    "title":"Interruption Analysis",
+    "prose_1":"We wanted to investigate of male or female justices got interrupted more by lawyers, attorneys, and others participating in the case. To do this, we wrote a function that returns a boolean if the last word in a text block is \"--\" which represents an interruption. We used this function to create a boolean column in our data set that indicates whether not a statement was interrupted, and analyzed the proportion between men and women.",
+    "prose_2":"We applied this function to over 100,000 lines of dialogue and came up with these proportions",
+    "prose_3":"6.23% of the lines that female justices speak get interrupted while only 2.48% of the lines that male justices speak get interrupted--that's almost three times as often! It appears that lawyers and attorneys may treat female justices differently in this way."
   }
 }
