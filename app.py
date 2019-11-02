@@ -23,60 +23,44 @@ Steps for data interaction:
 
 modal_table= go.Figure(
     data=[
-        go.Table(header=dict(values=['Gender', 'Proportion of Modals Per Line']),
-                 cells=dict(values=[['Male', 'Female'], [95, 85, 75, 95]])
+        go.Table(header=dict(values=['Gender', 'Proportion of Modals Per Line'],line_color='black', fill_color='white', font_size=16, ),
+                 cells=dict(values=[['Male', 'Female'], [0.017346, 0.017171]],line_color='black', fill_color='white', font_size=16, height=40)
                  )
-    ]
+    ], 
 )
 
 modal_bar =  go.Figure(
     data=[
-        go.Bar(name='Sentences starting With Modal', x=["Female","Male"], y=[0.021971, 0.015526],)
+        go.Bar(name='Sentences starting With Modal', x=["Female","Male"], y=[0.021971, 0.015526],
+        hovertext=['Female judges hedge in 0.021971% of sentences', 'Male judges hedge in 0.015526% of sentences'],
+        marker_color=['rgba(166, 139, 165, 1)','rgba(209, 153, 182, 1)' ]
+        )
     ]
 )
 interruption_bar =  go.Figure(
     data=[
-        go.Bar(name='Sentences starting With Modal', x=["Female","Male"], y=[1789/26931, 1826/71857],)
+        go.Bar(
+            name='Proportion of sentences that were interrupted', 
+            x=["Female","Male"], y=[1789/26931, 1826/71857],
+            marker_color=['rgba(166, 139, 165, 1)','rgba(209, 153, 182, 1)'],
+            hovertext=['Female judges were interrupted in 0.06642902% of sentences', 'Male judges were interrupted in 0.02541158% of sentences'])
     ]
 )
+modal_table.update_layout( height=300)
 # Change the bar mode
-modal_bar.update_layout(barmode='stack', title=go.layout.Title(text='Sentences starting with a Modal'))
-interruption_bar.update_layout(barmode='stack', title=go.layout.Title(text='Proportion of sentences that were interrupted'))
+modal_bar.update_layout(barmode='stack', title=go.layout.Title(text='Sentences starting with a Modal'), paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)')
+interruption_bar.update_layout(barmode='stack', title=go.layout.Title(text='Proportion of sentences that were interrupted'),paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)')
 
-
-# example_scatter2 = go.Scatter(x=random_x, y=random_y1,
-#                     mode='lines+markers',
-#                     name='lines+markers',
-#                     line = dict(color = '#3F94AB'),
-#                     opacity = 0.8)
-
-# example_scatter3 = go.Scatter(x=random_x, y=random_y2,
-#                     mode='lines', 
-#                     name='lines',
-#                     line = dict(color = '#6285B2'),
-#                     opacity = 0.8)
-
-
-# examplelayout = go.Layout(
-#     hovermode = "x",
-#     title = "Example Title",
-#     xaxis = dict(
-#         range = [0,1]
-#     ),
-#     yaxis = dict(
-#         autorange = True
-#     )
-# )
-
-# examples = [example_scatter1, example_scatter2, example_scatter3]
 
 # APP COMPONENTS
 # ==========
 header = dbc.Jumbotron(
     [
-        html.H1("justices", className="display-3"),
+        html.H1("Justices", className="display-2"),
         html.P(
-            "Analysis of Supreme Court Case Transcripts Since 2005"
+            "An Analysis of Supreme Court Case Transcripts Since 2005"
         )
     ],
     className = 'my-div text-center',
@@ -128,21 +112,23 @@ tabs = dbc.Tabs(
 )
 
 body = dbc.Container(
-    dbc.Row(
-        [
-            dbc.Col(
-                [
-                    html.H2(prose_df.loc["intro", "title"]),
-                    html.P(prose_df.loc["intro", "prose_1"]),
-                    html.P(prose_df.loc["intro", "prose_2"]),
-                    html.Div(
-                            [html.P(prose_df.loc["intro", "closing_prose"])],
-                            className="sidenote-text"
-                        ),
-                    tabs,
-                ],md=12
-            )
-        ]
+    dbc.Container(
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        html.H2(prose_df.loc["intro", "title"]),
+                        html.P(prose_df.loc["intro", "prose_1"]),
+                        html.P(prose_df.loc["intro", "prose_2"]),
+                        html.Div(
+                                [html.P(prose_df.loc["intro", "closing_prose"])],
+                                className="sidenote-text"
+                            ),
+                        tabs,
+                    ],md=8,
+                )
+            ], justify="center"
+        )
     )
 )
 
@@ -160,13 +146,6 @@ server = app.server
 app.layout = html.Div(children=[
         header,
         body,
-
-        # dcc.Graph(
-        #     figure = examplefig
-        # ),
-        # html.P(prose_df.loc["data explanation", "prose_1"]),
-        # html.P(prose_df.loc["data explanation", "prose_2"]),
-        # html.P(prose_df.loc["data explanation", "prose_3"]),
 
 ])
 
